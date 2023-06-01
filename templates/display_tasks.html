@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Display All Tasks</title>
+{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#tasks_data').DataTable();
+        } );
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h3>All Tasks Details</h3>
+    <table id="tasks_data" class="display" style="width:100%" >
+        <thead>
+            <tr>
+                <th>Task ID</th>
+                <th>Description</th>
+                <th>Owner ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in tasks %}
+            <tr>
+                <td>{{row.task_id}}</td>
+                <td>{{row.description}}</td>
+                <td>{{row.owner_id}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

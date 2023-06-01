@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Display All Employees</title>
+{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#employees_tasks_data').DataTable();
+        } );
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h3>All Employee's Details</h3>
+    <table id="employees_tasks_data" class="display" style="width:100%" >
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in employees %}
+            <tr>
+                <td>{{row.employee_id}}</td>
+                <td>{{row.firstname}}</td>
+                <td>{{row.lastname}}</td>
+                <td>
+                    {% for t in row.tasks %}
+                    <div>{{t.task_id}},{{t.description}}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}
